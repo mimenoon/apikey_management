@@ -25,17 +25,6 @@ class OperationMenu extends StatelessWidget {
               'API Key Management : Operation Menu',
               style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'PT_Sans'),
             )),
-            actions: [
-              IconButton(
-                icon: Icon(Icons.logout),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()),
-                  );
-                },
-              ),
-            ],
           ),
           body: Container(
             child: Column(

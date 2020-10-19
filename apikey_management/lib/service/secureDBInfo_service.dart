@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 class SecureDBInfoService {
   SecureDBInfoService();
 
-  static const API = 'http://192.168.86.39:9000/apikeymanagement/secure/admin/describe?secret=';
+  static const API = 'http://172.27.1.81:9000/apikeymanagement/secure/admin/describe?secret=';
 
   String username = 'admin';
   String password = 'plus1234';
