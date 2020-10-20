@@ -223,7 +223,7 @@ class _Describe extends State<Describe> {
                                         elevation: 8,
                                         highlightElevation: 2,
                                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                                        onPressed: () {
+                                        onPressed: () async {
                                           print("press enter la");
                                           final form = formInputKey.currentState;
                                           if (inputFileName == '') {
@@ -241,8 +241,12 @@ class _Describe extends State<Describe> {
                                               },
                                             );
                                           } else if (form.validate()) {
-                                            futureSecureDBInfo = secureDBInfoService.fileUpload(secret, uploadedFile);
-                                            setState(() {});
+                                            futureSecureDBInfo = (await secureDBInfoService.fileUpload(secret, uploadedFile)) as Future<SecureDBInfo>;
+                                            if (futureSecureDBInfo == null) {
+                                              return AlertDialogScreen(title: "Error", content: "incorrect secret or secureDB");
+                                            } else {
+                                              setState(() {});
+                                            }
                                           }
                                         },
                                         child: EnterButton(),

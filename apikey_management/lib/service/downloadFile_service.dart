@@ -8,8 +8,8 @@ import 'fileService.dart';
 class DownloadFileService {
   DownloadFileService();
 
-  static const API_Revoke = 'http://192.168.80.1:9000/apikeymanagement/secure/admin/revoke?secret=';
-  static const API_Register = 'http://192.168.80.1:9000/apikeymanagement/secure/admin/register?secret=';
+  static const API_Revoke = 'http://172.27.1.81:9000/apikeymanagement/secure/admin/revoke?secret=';
+  static const API_Register = 'http://172.27.1.81:9000/apikeymanagement/secure/admin/register?secret=';
 
   String username = 'admin';
   String password = 'plus1234';
