@@ -296,6 +296,19 @@ class _Revoke extends State<Revoke> {
                             ),
                           ],
                         ),
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          margin: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 10),
+                          // alignment: Alignment.centerLeft,
+                          decoration: BoxDecoration(
+                            color: Colors.white60,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                          ),
+                          child: Text("*  The file will be downloaded after enter correct input",
+                              style: TextStyle(color: KletterColor, fontSize: 15, fontWeight: FontWeight.bold, fontFamily: 'PT_Sans')),
+                        ),
                       ],
                     ),
                   ),

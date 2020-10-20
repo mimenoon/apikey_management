@@ -363,8 +363,10 @@ class _Register extends State<Register> {
                                               },
                                             );
                                           } else if (form.validate()) {
+                                            // ignore: unrelated_type_equality_checks
                                             downloadFileService.fileUploadRegister(
                                                 secret, uploadedFile, secretExpire, user, role, module, expireDate);
+
                                             setState(() {});
                                           }
                                           return null;

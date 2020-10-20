@@ -27,14 +27,14 @@ class _Describe extends State<Describe> {
 
   String secret;
   String filePath;
+  String errorms = 'No result, please enter secret and secureDB file';
+  int checkError = 0;
   ScrollController _controller;
   String inputFileName = '';
   SecureDBInfo secureDBInfo;
   String strSecureExpire;
   bool expired;
-  Row secureExpire = Row(
-    children: [Text('')],
-  );
+  Row secureExpire = Row(children: [Text('')]);
   List<ApiKeyInfo> secureDBInfoList;
   Column result = Column(children: [Text(''), Text('')]);
   int count = 0;
@@ -223,7 +223,7 @@ class _Describe extends State<Describe> {
                                         elevation: 8,
                                         highlightElevation: 2,
                                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                                        onPressed: () async {
+                                        onPressed: () {
                                           print("press enter la");
                                           final form = formInputKey.currentState;
                                           if (inputFileName == '') {
@@ -241,12 +241,9 @@ class _Describe extends State<Describe> {
                                               },
                                             );
                                           } else if (form.validate()) {
-                                            futureSecureDBInfo = (await secureDBInfoService.fileUpload(secret, uploadedFile)) as Future<SecureDBInfo>;
-                                            if (futureSecureDBInfo == null) {
-                                              return AlertDialogScreen(title: "Error", content: "incorrect secret or secureDB");
-                                            } else {
-                                              setState(() {});
-                                            }
+                                            futureSecureDBInfo = secureDBInfoService.fileUpload(secret, uploadedFile);
+                                            checkError = 1;
+                                            setState(() {});
                                           }
                                         },
                                         child: EnterButton(),
@@ -327,10 +324,14 @@ class _Describe extends State<Describe> {
                                       ],
                                     );
                                   }
+                                } else if (checkError == 1) {
+                                  errorms = 'Incorrect secret or secureDB file, please enter again';
+                                  return Container(
+                                    child: Text(errorms, style: TextStyle(color: KletterColor, fontSize: 15, fontFamily: 'PT_Sans')),
+                                  );
                                 }
                                 return Container(
-                                  child: Text('No data, please enter valid input.',
-                                      style: TextStyle(color: KletterColor, fontSize: 15, fontFamily: 'PT_Sans')),
+                                  child: Text(errorms, style: TextStyle(color: KletterColor, fontSize: 15, fontFamily: 'PT_Sans')),
                                 );
                               },
                             ),
